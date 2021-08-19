@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:asaek_kyari_aniversario/widgets/widgets.dart';
+import 'package:asaek_kyari_aniversario/utils/launchURL.dart';
 
 class BiografiaScreen extends StatelessWidget {
   @override
@@ -61,11 +63,48 @@ class _DescripcionPerfil extends StatelessWidget {
           width: 10,
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            style: TextStyle(),
-            textAlign: TextAlign.justify,
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          color: Colors.blueGrey,
+          child: Column(
+            children: [
+              HorizontalDividerWithoutHTTP(
+                leftLabel: 'Nombre Artistico:',
+                rightLabel: 'Takemura Kiriko (竹村 桐子)',
+                height: 35,
+              ),
+              HorizontalDividerWithoutHTTP(
+                leftLabel: 'Edad:',
+                rightLabel: '28 Años',
+                height: 35,
+              ),
+              HorizontalDividerWithoutHTTP(
+                leftLabel: 'Fecha de Nacimiento:',
+                rightLabel: '29 Enero 1993',
+                height: 35,
+              ),
+              HorizontalDividerWithoutHTTP(
+                leftLabel: 'Lugar de nacimiento:',
+                rightLabel: 'Nishitokyo, Tokio, Japón',
+                height: 35,
+              ),
+              SizedBox(
+                height: 40.0,
+                width: 10,
+              ),
+              Text('- Cuentas Oficiales -'),
+              SizedBox(
+                height: 15.0,
+                width: 10,
+              ),
+              LaunchUrlsText(
+                texto: 'Twitter',
+                url: 'https://mobile.twitter.com/pamyurin',
+              ),
+              LaunchUrlsText(
+                texto: 'Facebook',
+                url: 'https://www.facebook.com/KyaryPamyuPamyuJapan',
+              ),
+            ],
           ),
         ),
         // Container(
