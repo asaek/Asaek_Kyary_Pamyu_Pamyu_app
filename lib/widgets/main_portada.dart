@@ -1,4 +1,7 @@
+import 'package:asaek_kyari_aniversario/screens/screens.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InicioPortada extends StatelessWidget {
   @override
@@ -62,33 +65,61 @@ class MainContent extends StatelessWidget {
       color: Colors.pinkAccent,
     );
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(child: Container()),
-          Text(
-            'Kyary Pamyu Pamyu`',
-            style: textStyleNOmbre,
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(child: Container()),
+              Text(
+                'Kyary Pamyu Pamyu`',
+                style: textStyleNOmbre,
+              ),
+              Divider(
+                color: Colors.redAccent,
+              ),
+              Text(
+                'Kiriko Takemura',
+                style: textStyleSubnombre,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              // Divider(
+              //   color: Colors.redAccent,
+              // ),
+              Text(
+                '竹村 桐子',
+                style: textStyleMinnombre,
+              )
+            ],
           ),
-          Divider(
-            color: Colors.redAccent,
+        ),
+        Positioned(
+          top: 30,
+          right: 10,
+          child: SafeArea(
+            child: RawMaterialButton(
+              shape: CircleBorder(),
+              child: FaIcon(
+                FontAwesomeIcons.chevronRight,
+                size: 70,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (BuildContext context) => PrincipalPage(),
+                  ),
+                );
+              },
+            ),
           ),
-          Text(
-            'Kiriko Takemura',
-            style: textStyleSubnombre,
-          ),
-          Divider(
-            color: Colors.redAccent,
-          ),
-          Text(
-            '竹村 桐子',
-            style: textStyleMinnombre,
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

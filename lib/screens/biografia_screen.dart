@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:asaek_kyari_aniversario/widgets/widgets.dart';
-import 'package:asaek_kyari_aniversario/utils/launchURL.dart';
 
 class BiografiaScreen extends StatelessWidget {
   @override
