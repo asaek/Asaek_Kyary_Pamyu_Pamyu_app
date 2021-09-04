@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kyary Aniversario',
-      initialRoute: 'entrada',
+      initialRoute: 'inicio',
       routes: {
         'inicio': (_) => PrincipalPage(),
         'biografia': (_) => BiografiaScreen(),
