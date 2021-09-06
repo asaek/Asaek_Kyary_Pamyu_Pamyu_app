@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:asaek_kyari_aniversario/providers/providers.dart';
+import 'package:asaek_kyari_aniversario/screens/menu_principal.dart';
+import 'package:asaek_kyari_aniversario/utils/launchURL.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,11 +12,9 @@ import 'package:provider/provider.dart';
 class PrincipalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // posterProvider.loadingPoster();
-
-    // final size = MediaQuery.of(context).size;
     final String posterSeleccionado =
         Provider.of<PosterPrincipalProvider>(context).posterSeleccionado;
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -30,61 +31,90 @@ class PrincipalPage extends StatelessWidget {
               posterPaper: posterSeleccionado,
             ),
 
-            // Expanded(child: SizedBox()),
-            // Positioned(
-            //   bottom: 0,
-            //   left: 0,
-            //   child: Container(
-            //     height: 300,
-            //     color: Colors.teal,
-            //   ),
-            // ),
-            // Container(
-            //   width: double.infinity,
-            //   height: 500,
-            //   decoration: BoxDecoration(
-            //     shape: ,
-            //     gradient: LinearGradient(
-            //       begin: Alignment.topCenter,
-            //       end: Alignment.bottomCenter,
-            //       // stops: [0.2, 0.8],
-            //       colors: [
-            //         Color.fromRGBO(0, 0, 0, 0),
-            //         Color.fromRGBO(32, 42, 48, 1),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             _BlurGradientoso(
               posterPaper: posterSeleccionado,
             ),
 
             // Container(
-            //     decoration: BoxDecoration(
-            //         gradient: LinearGradient(
-            //             begin: Alignment.topCenter,
-            //             end: Alignment.bottomCenter,
-            //             colors: [
-            //       Colors.black.withOpacity(0),
-            //       Colors.black.withOpacity(0.6)
-            //     ],
-            //             stops: [
-            //       0.3,
-            //       0.8
-            //     ]))),
+            //   decoration: BoxDecoration(
+            //     gradient: LinearGradient(
+            //       begin: Alignment.topCenter,
+            //       end: Alignment.bottomCenter,
+            //       colors: [
+            //         Colors.black.withOpacity(0),
+            //         Colors.black.withOpacity(0.6)
+            //       ],
+            //       stops: [0.3, 0.8],
+            //     ),
+            //   ),
+            // ),
 
             Container(
               width: double.infinity,
               height: 100,
-
-              // padding: EdgeInsets.only(top: 180, bottom: 5),
-
               child: _ImagenSemanalListView(),
             ),
             // _ImagenSemanalListView(),
-            // _BotonMenuLuz(),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: _BotonMenuLuz(),
+            ),
+
+            Positioned(
+              top: 0,
+              right: 0,
+              child: _BotonURLLuz(
+                posterPaper: posterSeleccionado,
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _BotonURLLuz extends StatelessWidget {
+  final String posterPaper;
+
+  const _BotonURLLuz({required this.posterPaper});
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        child: Row(
+          children: [
+            Container(
+              width: 100,
+              height: 70,
+              // color: Colors.red,
+              margin: EdgeInsets.only(top: 20),
+            ),
+            Container(
+              // TODO Darle un glow de sombra con el mismo color para que
+              // TODO se vea como un LED
+              width: 5,
+              height: 70,
+              margin: EdgeInsets.only(top: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 20,
+                    blurRadius: 60,
+                    offset: Offset(4, 0), // Shadow position
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        onTap: () {
+          launchURL(context, posterPaper);
+        },
       ),
     );
   }
@@ -133,36 +163,48 @@ class _BotonMenuLuz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Container(
-        height: 100,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text('Menu'),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: SvgPicture.asset(
+      child: SafeArea(
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                // TODO Darle un glow de sombra con el mismo color para que
+                // TODO se vea como un LED
+                width: 5,
+                height: 70,
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 20,
+                      blurRadius: 60,
+                      offset: Offset(4, 0), // Shadow position
+                    ),
+                  ],
+                ),
+              ),
+              SvgPicture.asset(
                 'assets/Kyary_Pamyu_Pamyu_5th_Anniversary.svg',
                 width: 50,
                 height: 50,
                 colorBlendMode: BlendMode.srcIn,
               ),
-            ),
-            SizedBox(
-              width: double.infinity,
-            ),
-            Container(
-              // TODO Darle un glow de sombra con el mismo color para que
-              // TODO se vea como un LED
-              width: 70,
-              height: 2,
-              color: Colors.white,
-            ),
-          ],
+              // SizedBox(
+              //   width: double.infinity,
+              // ),
+            ],
+          ),
         ),
       ),
       onTap: () {
-        print('Directo al menu');
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (BuildContext context) => MenuPrincipalPage()));
       },
     );
   }
